@@ -41,7 +41,7 @@ const getById = async (req, res) => {
 
         if (!alumno) {
             return res.status(404).json({
-                message: `no se encontró el Alumno con id ${idAlumno}`
+                message: `alumno no encontrado`
             });
         };
 
