@@ -49,7 +49,7 @@ class Alumno {
         const connection = await db.createConnection();
 
         const deletedAt = new Date();
-        const [result] = connection.execute("UPDATE alumnos SET deleted = 0, deleted_at = ? WHERE id = ?", [deletedAt, id]);
+        const [result] = connection.execute("UPDATE alumnos SET deleted = 0, deletedAt = ? WHERE id = ?", [deletedAt, id]);
 
         connection.end();
 
@@ -60,17 +60,6 @@ class Alumno {
         return
     }
 
-    static async deleteFisicoById(id) {
-        const connection = await db.createConnection();
-        const [result] = await connection.execute("DELETE FROM alumnos WHERE id = ?", [id]);
-        connection.end();
-
-        if (result.affectedRows == 0) {
-            throw new Error("no se eliminó el Alumno");
-        }
-
-        return
-    }
 
     static async updateById(id, { nombre, matricula }) {
         const connection = await db.createConnection();

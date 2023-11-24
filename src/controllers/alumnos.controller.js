@@ -50,9 +50,9 @@ const getById = async (req, res) => {
             alumno
         });
     } catch (error) {
-        return res.status(500).json({
-            message: "ocurrió un error al obtener el Alumno",
-            error: error.message
+        return res.status(404).json({
+            message: "alumno no encontrado",
+            
         });
     }
 }
@@ -80,28 +80,11 @@ const create = async (req, res) => {
     }
 }
 
-const deleteLogico = async (req, res) => {
+const deleted = async (req, res) => {
     try {
         const idAlumno = req.params.id;
 
         await Alumno.deleteLogicoById(idAlumno);
-
-        return res.status(200).json({
-            message: "se eliminó el Alumno correctamente"
-        });
-    } catch (error) {
-        return res.status(500).json({
-            message: "ocurrió un error al eliminar el Alumno",
-            error: error.message
-        })
-    }
-}
-
-const deleteFisico = async (req, res) => {
-    try {
-        const idAlumno = req.params.id;
-
-        await Alumno.deleteFisicoById(idAlumno);
 
         return res.status(200).json({
             message: "se eliminó el Alumno correctamente"
@@ -139,6 +122,6 @@ module.exports = {
     index,
     getById,
     create,
-    delete: deleteLogico,
+    deleted,
     update
 }
