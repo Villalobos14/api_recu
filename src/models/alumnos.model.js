@@ -72,14 +72,14 @@ class Alumno {
         return
     }
 
-    static async updateById(id, { email, password }) {
+    static async updateById(id, { nombre, matricula }) {
         const connection = await db.createConnection();
 
         const updatedAt = new Date();
-        const [result] = await connection.execute("UPDATE alumnos SET email = ?, password = ?, updated_at = ? WHERE id = ?", [email, password, updatedAt, id]);
+        const [result] = await connection.execute("UPDATE alumnos SET nombre = ?, matricula = ?, updatedAt = ? WHERE id = ?", [nombre, matricula, updatedAt, id]);
 
         if (result.affectedRows == 0) {
-            throw new Error("no se actualizó el Alumno");
+            throw new Error("el alumno no pudo actualizarse");
         }
 
         return

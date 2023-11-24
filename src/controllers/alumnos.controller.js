@@ -1,6 +1,5 @@
 const Alumno = require('../models/alumnos.model');
-const bcrypt = require('bcrypt');
-const saltosBcrypt = parseInt(process.env.SALTOS_BCRYPT);
+
 
 const index = async (req, res) => {
     try {
@@ -119,14 +118,14 @@ const update = async (req, res) => {
     try {
         const idAlumno = req.params.id;
         const datosActualizar = {
-            email: req.body.email,
-            password: req.body.password
+            nombre: req.body.nombre,
+            matricula: req.body.matricula
         }
 
         await Alumno.updateById(idAlumno, datosActualizar);
 
         return res.status(200).json({
-            message: "el Alumno se actualizó correctamente"
+            message: "alumno actualizado correctamente"
         })
     } catch (error) {
         return res.status(500).json({
