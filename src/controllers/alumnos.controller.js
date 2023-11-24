@@ -15,7 +15,7 @@ const index = async (req, res) => {
             message: "alumnos obtenidos exitosamente",
             data: alumnos
         };
-
+        
         if (page && limit) {
             const totalalumnos = await Alumno.count();
             response = {

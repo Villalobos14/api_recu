@@ -16,7 +16,7 @@ class Alumno {
 
     static async getAll({ offset, limit }, { sort, order }) {
         const connection = await db.createConnection();
-        let query = "SELECT id, email, password, deleted, created_at, updated_at, deleted_at FROM alumnos WHERE deleted = 0";
+        let query = "SELECT id, nombre, apellidoPaterno, apellidoMaterno, matricula,deleted,createdAt, updatedAt, deletedAt FROM alumnos WHERE deleted = 0";
 
         if (sort && order) {
             query += ` ORDER BY ${sort} ${order}`
