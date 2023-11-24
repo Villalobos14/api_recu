@@ -7,9 +7,9 @@ const PORT = process.env.PORT;
 app.use(express.json());
 
 // rutas
-const usuariosRouter = require('./src/routes/alumnos.route');
+const alumnosRouter = require('./src/routes/alumnos.route');
 
-app.use('/usuarios', usuariosRouter);
+app.use('/alumnos', alumnosRouter);
 
 
 app.listen(PORT, () => {

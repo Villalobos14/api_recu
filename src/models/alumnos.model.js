@@ -2,11 +2,13 @@ const db = require('../configs/db.config');
 
 class Alumno {
 
-    constructor({ id, email, password, deleted, createdAt, updatedAt, deletedAt }) {
+    constructor({ id, nombre, apellidoPaterno, apellidoMaterno,matricula, createdAt, updatedAt, deletedAt ,deleted}) {
         this.id = id;
-        this.email = email;
-        this.password = password;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
         this.deleted = deleted;
+        this.matricula = matricula;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.deletedAt = deletedAt;
@@ -95,7 +97,7 @@ class Alumno {
         const connection = await db.createConnection();
 
         const createdAt = new Date();
-        const [result] = await connection.execute("INSERT INTO alumnos (email, password, created_at) VALUES (?, ?, ?)", [this.email, this.password, createdAt]);
+        const [result] = await connection.execute("INSERT INTO alumnos (nombre, apellidoPaterno, apellidoMaterno, matricula, createdAt,deleted) VALUES (?, ?, ?,?,?,?)", [this.nombre, this.apellidoPaterno,this.apellidoMaterno,this.matricula, createdAt,0]);
 
         connection.end();
 

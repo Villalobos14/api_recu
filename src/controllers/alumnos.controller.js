@@ -60,16 +60,18 @@ const getById = async (req, res) => {
 
 const create = async (req, res) => {
     try {
-        const Alumno = new Alumno({
-            email: req.body.email,
-            password: bcrypt.hashSync(req.body.password, saltosBcrypt)
+        const alumno = new Alumno({
+            nombre: req.body.nombre,
+            apellidoPaterno: req.body.apellidoPaterno,
+            apellidoMaterno: req.body.apellidoMaterno,
+            matricula: req.body.matricula,
+            
         });
 
-        await Alumno.save()
+        await alumno.save()
 
-        return res.status(200).json({
-            message: "Alumno creado exitosamente",
-            Alumno
+        return res.status(201).json({
+            message: "alumno creado exitosamente",
         });
     } catch (error) {
         return res.status(500).json({
