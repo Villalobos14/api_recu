@@ -34,12 +34,12 @@ class Alumno {
 
     static async getById(id) {
         const connection = await db.createConnection();
-        const [rows] = await connection.execute("SELECT id, email, password, deleted, created_at, updated_at, deleted_at FROM alumnos WHERE id = ? AND deleted = 0", [id]);
+        const [rows] = await connection.execute("SELECT id, nombre, apellidoPaterno, apellidoMaterno, matricula,deleted,createdAt, updatedAt, deletedAt FROM alumnos WHERE id = ? AND deleted = 0", [id]);
         connection.end();
 
         if (rows.length > 0) {
             const row = rows[0];
-            return new Alumno({ id: row.id, email: row.email, password: row.password, deleted: row.deleted, createdAt: row.created_at, updatedAt: row.updated_at, deletedAt: row.deleted_at });
+            return new Alumno({ id: row.id, nombre: row.nombre, apellidoPaterno: row.apellidoPaterno, apellidoMaterno: row.apellidoMaterno,matricula:row.matricula,deleted:row.deleted ,createdAt: row.createdAt, updatedAt: row.updatedAt, deletedAt: row.deletedAt });
         }
 
         return null;

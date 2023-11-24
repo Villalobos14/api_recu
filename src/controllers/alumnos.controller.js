@@ -38,9 +38,9 @@ const index = async (req, res) => {
 const getById = async (req, res) => {
     try {
         const idAlumno = req.params.id;
-        const Alumno = await Alumno.getById(idAlumno);
+        const alumno = await Alumno.getById(idAlumno);
 
-        if (!Alumno) {
+        if (!alumno) {
             return res.status(404).json({
                 message: `no se encontró el Alumno con id ${idAlumno}`
             });
@@ -48,7 +48,7 @@ const getById = async (req, res) => {
 
         return res.status(200).json({
             message: "Alumno encontrado exitosamente",
-            Alumno
+            alumno
         });
     } catch (error) {
         return res.status(500).json({
