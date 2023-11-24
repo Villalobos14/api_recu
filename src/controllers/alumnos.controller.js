@@ -6,9 +6,9 @@ const index = async (req, res) => {
         const page = parseInt(req.query.page);
         const limit = parseInt(req.query.limit);
         const offset = (page - 1) * limit;
-        const {sort, order} = req.query;
+        //const {sort, order} = req.query;
 
-        const alumnos = await Alumno.getAll({offset, limit}, {sort, order});
+        const alumnos = await Alumno.getAll({offset, limit});
 
         let response = {
             message: "alumnos obtenidos exitosamente",
@@ -41,16 +41,15 @@ const getById = async (req, res) => {
 
         if (!alumno) {
             return res.status(404).json({
-                message: `alumno no encontrado`
+                message: `no se encontró el Alumno con id ${idAlumno}`
             });
         };
 
-        return res.status(200).json({
-            message: "Alumno encontrado exitosamente",
+        return res.status(200).json(
             alumno
-        });
+        );
     } catch (error) {
-        return res.status(404).json({
+        return res.status(500).json({
             message: "alumno no encontrado",
             
         });

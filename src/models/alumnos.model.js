@@ -14,14 +14,11 @@ class Alumno {
         this.deletedAt = deletedAt;
     }
 
-    static async getAll({ offset, limit }, { sort, order }) {
+    static async getAll({ offset, limit }) {
         const connection = await db.createConnection();
-        let query = "SELECT id, nombre, apellidoPaterno, apellidoMaterno, matricula,deleted,createdAt, updatedAt, deletedAt FROM alumnos WHERE deleted = 0";
+        let query = "SELECT id, nombre, apellidoPaterno, apellidoMaterno, matricula,deleted,createdAt, updatedAt, deletedAt FROM alumnos WHERE deleted = 0 ORDER BY createdAt DESC";
 
-        if (sort && order) {
-            query += ` ORDER BY ${sort} ${order}`
-        }
-
+    
         if (offset >= 0 && limit) {
             query += ` LIMIT ${offset}, ${limit}`;
         }
